@@ -1,15 +1,20 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-static void Main(string[] args)
+public class Program
 {
-    var dict = Huffman.GetFrequenciesDictionary("internet");
-    var initPQ = Huffman.GetInitialPriorityQueue(dict);
-    var adjustedQ = Huffman.AdjustPriorityQueue(initPQ);
-    var codesDict = Huffman.GetCodes(adjustedQ);
-    Console.WriteLine(codesDict.Count);
-    foreach (var d in codesDict)
-        Console.WriteLine($"{d.Key}: {d.Value}");
+    static void Main(string[] args)
+    {
+        var dict = Huffman.GetFrequenciesDictionary("internet");
+        var initPQ = Huffman.GetInitialPriorityQueue(dict);
+        var adjustedQ = Huffman.AdjustPriorityQueue(initPQ);
+        var codesDict = Huffman.GetCodes(adjustedQ);
+        Console.WriteLine(codesDict.Count);
+        foreach (var d in codesDict)
+            Console.WriteLine($"{d.Key}: {d.Value}");
+
+        
+    }
 }
 
 public class HeapNode
