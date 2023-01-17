@@ -14,11 +14,17 @@ data = [
 ]
 length = len(data)
 state = namedtuple('State' , ['From' , 'To' , 'Cost'])
-states = []
+states = list(zip(labels, labels, labels))
 states[length-1] = state(From = 'J' ,To = 'J' ,Cost = 0)
 rowIndex = length - 2
 while(rowIndex >= 0):
+    states[rowIndex] = state(From=labels[rowIndex],To=labels[rowIndex+1],Cost=100000)
     for columnIndex in range(rowIndex+1,length):
         if data[rowIndex][columnIndex] == 0: continue
-        states[rowIndex] = state(From=labels[rowIndex],To=labels[columnIndex],Cost=100000)
+        newCost = data[rowIndex][columnIndex] + states[columnIndex].Cost
+        if newCost < states[rowIndex].Cost:
+            states[rowIndex].To = labels[columnIndex]
+            states[rowIndex].Cost = newCost 
     rowIndex -=1
+
+print(states[0].Cost)
